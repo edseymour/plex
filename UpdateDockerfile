@@ -1,0 +1,5 @@
+#!/bin/bash
+
+Version=Fedora64
+RPM=$(curl https://plex.tv/downloads?channel=plexpass | grep Fedora64 | awk '{IGNORECASE=1;gsub(/.*href=\042/,"",$o);gsub(/\042.*/,"",$o);print $(o)}')
+cat Dockerfile-template | sed -e "s|\$RPM-URL|$RPM|g" > Dockerfile

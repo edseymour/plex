@@ -1,0 +1,12 @@
+FROM fedora:22
+MAINTAINER "Ed Seymour" <edwaado@gmail.com>
+
+ADD $RPM-URL /root/Downloads/plex.rpm
+RUN rpm -ivh /root/Downloads/plex.rpm && rm -rf /root/Downloads
+ADD start.sh /start.sh
+RUN chmod u+x /start.sh
+
+VOLUME ["/config","/data"]
+EXPOSE 32400
+
+CMD ["/start.sh"]
